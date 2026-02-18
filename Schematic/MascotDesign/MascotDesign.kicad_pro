@@ -411,6 +411,14 @@
     [
       "ba045f6c-d730-41b1-992e-d77c9aee61c5",
       "Root"
+    ],
+    [
+      "8b76e1c7-16fb-41f9-a46d-90890acff3e2",
+      "Camera LEDs"
+    ],
+    [
+      "621dc98a-3a96-4433-a17f-2055bce50a9c",
+      "Power supply"
     ]
   ],
   "text_variables": {}
