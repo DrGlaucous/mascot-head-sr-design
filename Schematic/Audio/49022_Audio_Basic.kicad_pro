@@ -229,7 +229,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
       "similar_label_and_power": "warning",
@@ -412,6 +412,10 @@
     [
       "35e2edc8-af4a-4db2-b69c-6fa48b97ea6f",
       "Root"
+    ],
+    [
+      "4fbda0da-7e70-4f62-a58e-9bccff4e685e",
+      "CM108 test"
     ]
   ],
   "text_variables": {}
