@@ -56,6 +56,48 @@
 		(uuid f9419692-4d98-4d2e-bb00-548e5e646a86)
 	)
 	(sheet
+		(at 116.84 17.78)
+		(size 39.37 34.29)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "518d615e-a3a6-481a-b1f1-6d892d60ddd4")
+		(property "Sheetname" "Amplifier"
+			(at 116.84 17.0684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Amplifier_Circuit.kicad_sch"
+			(at 116.84 52.6546 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "MascotDesign"
+				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 16.51 17.78)
 		(size 45.72 24.13)
 		(exclude_from_sim no)
