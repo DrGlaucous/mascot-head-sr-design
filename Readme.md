@@ -9,6 +9,12 @@
 
 
 
+## Notes
+
+Useful info links:
+- Compute io board v3: https://www.raspberrypi.com/documentation/computers/compute-module.html#cmio
+- 
+
 
 
 
