@@ -57,7 +57,7 @@
 	)
 	(sheet
 		(at 116.84 17.78)
-		(size 39.37 34.29)
+		(size 48.26 24.13)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -81,7 +81,7 @@
 			)
 		)
 		(property "Sheetfile" "Amplifier_Circuit.kicad_sch"
-			(at 116.84 52.6546 0)
+			(at 116.84 42.4946 0)
 			(effects
 				(font
 					(size 1.27 1.27)
