@@ -1,51 +1,93 @@
-class DisplaySubsystem:
-    """
-    Subsystem responsible for translating gaze vectors into visual output 
-    via MIPI DSI. Designed to maintain >10 FPS and <100ms latency.
-    """
-    
+import threading
+import tkinter as tk
+import sys
+
+WINDOW_WIDTH = 1024
+WINDOW_HEIGHT = 768
+CIRCLE_RADIUS = 100
+BG_COLOR = "white"
+CIRCLE_COLOR = "black"
+WINDOW_TITLE = "Gaze Position Display"
+
+
+class Display:
     def __init__(self):
-        # 1. Initialize MIPI DSI Communication Lanes
-        # 2. Allocate Double-Buffers (Prevents visual tearing)
-        # 3. Load Eye Graphics (Sclera, Iris, Pupil) into Video RAM
-        pass
+        self.root = tk.Tk()
+        self.root.title(WINDOW_TITLE)
+        self.root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
+        self.root.resizable(False, False)
 
-    def process_gaze_input(self, gaze_packet):
-        """
-        Primary logic loop triggered by the Software Subsystem.
-        """
-        # STEP 1: Coordinate Transformation
-        # Map normalized sensor data (-1.0 to 1.0) to LCD pixel space (800x480).
-        target_pixels = self._map_to_screen(gaze_packet)
+        self.canvas = tk.Canvas(
+            self.root,
+            width=WINDOW_WIDTH,
+            height=WINDOW_HEIGHT,
+            bg=BG_COLOR,
+            highlightthickness=0,
+        )
+        self.canvas.pack()
 
-        # STEP 2: Signal Conditioning (Smoothing)
-        # Apply Low-Pass Filter to the coordinates to eliminate pupil jitter.
-        # This ensures 'believable' and natural eye movement.
-        smoothed_pos = self._filter_noise(target_pixels)
+        # Draw initial circle at the center
+        cx, cy = WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2
+        self.circle = self.canvas.create_oval(
+            cx - CIRCLE_RADIUS,
+            cy - CIRCLE_RADIUS,
+            cx + CIRCLE_RADIUS,
+            cy + CIRCLE_RADIUS,
+            fill=CIRCLE_COLOR,
+            outline=CIRCLE_COLOR,
+        )
 
-        # STEP 3: State Management
-        # Check if Eye-Tracking Subsystem has 'Lock'.
-        if gaze_packet.is_valid:
-            # Render eye at the calculated position
-            self._draw_eye_state(smoothed_pos)
-        else:
-            # SAFETY STATE: Execute 'Idle/Searching' animation if tracking is lost
-            self._draw_idle_animation()
+        # Status label
+        self.status = self.canvas.create_text(
+            10,
+            WINDOW_HEIGHT - 10,
+            anchor="sw",
+            text=f"Gaze: ({cx}, {cy})",
+            font=("Consolas", 11),
+            fill="gray",
+        )
 
-        # STEP 4: Timing Validation
-        # Verify execution time does not exceed the 100ms latency budget.
-        self._check_performance_metrics()
+        # Start a background thread that reads from stdin
+        self.input_thread = threading.Thread(target=self._read_input, daemon=True)
+        self.input_thread.start()
 
-    def _map_to_screen(self, data):
-        # Formula: Pixel = (Normalized_Value + 1) * (Dimension / 2)
-        pass
+    def run(self):
+        """Start the Tk main loop."""
+        self.root.mainloop()
 
-    def _filter_noise(self, coords):
-        # Implementation of a weighted moving average or Alpha-Beta filter
-        pass
+    def _move_circle(self, x: float, y: float):
+        """Move the circle so its center is at (x, y)."""
+        self.canvas.coords(
+            self.circle,
+            x - CIRCLE_RADIUS,
+            y - CIRCLE_RADIUS,
+            x + CIRCLE_RADIUS,
+            y + CIRCLE_RADIUS,
+        )
+        self.canvas.itemconfig(self.status, text=f"Gaze: ({x:.1f}, {y:.1f})")
 
-    def _draw_eye_state(self, pos):
-        # 1. Clear back buffer
-        # 2. Blit eye assets at 'pos'
-        # 3. Flip buffers (v-sync aligned) to update the physical LCD
-        pass
+    def _read_input(self):
+        """Continuously read 'x y' lines from stdin and update the circle."""
+        print(
+            f"[display] Window ready ({WINDOW_WIDTH}x{WINDOW_HEIGHT}). "
+            "Enter gaze position as 'x y':"
+        )
+        for line in sys.stdin:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                parts = line.replace(",", " ").split()
+                x, y = float(parts[0]), float(parts[1])
+                # Schedule the update on the Tk main thread
+                self.root.after(0, self._move_circle, x, y)
+            except (ValueError, IndexError):
+                print(
+                    f"[display] Invalid input '{line}'. Expected two numbers: x y",
+                    file=sys.stderr,
+                )
+
+
+if __name__ == "__main__":
+    display = Display()
+    display.run()
