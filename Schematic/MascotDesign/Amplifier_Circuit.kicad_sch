@@ -3370,7 +3370,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "13.2 R"
 			(at 237.49 107.9499 0)
 			(effects
 				(font
@@ -3517,7 +3517,7 @@
 				)
 			)
 		)
-		(property "Value" "L"
+		(property "Value" "10 uH"
 			(at 193.04 107.95 90)
 			(effects
 				(font
@@ -4117,7 +4117,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3R"
+		(property "Value" "13.2 R"
 			(at 237.49 85.0899 0)
 			(effects
 				(font
@@ -4490,7 +4490,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "1 uF"
 			(at 200.66 105.4099 0)
 			(effects
 				(font
@@ -5774,7 +5774,7 @@
 				)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Audio in"
 			(at 24.13 54.61 0)
 			(effects
 				(font
@@ -5849,7 +5849,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "1 uF"
 			(at 200.66 88.8999 0)
 			(effects
 				(font
@@ -6144,7 +6144,7 @@
 				)
 			)
 		)
-		(property "Value" "L"
+		(property "Value" "10 uH"
 			(at 193.04 77.47 90)
 			(effects
 				(font
@@ -6295,7 +6295,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Screw_Terminal_01x02"
+		(property "Value" "Speaker 8R"
 			(at 260.35 96.5199 0)
 			(effects
 				(font
