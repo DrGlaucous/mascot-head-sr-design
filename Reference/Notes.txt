@@ -1,0 +1,12 @@
+Given 3 batteries in series with a current draw of 0.27A, 2.55 watts
+
+started at: 4:34
+9.989 V at 0:00
+9.875 V at 2:00
+9.716 V at 5:00
+9.588 V at 7:00
+9.528 V at 8:00
+9.380 V at 10:00
+
+
+

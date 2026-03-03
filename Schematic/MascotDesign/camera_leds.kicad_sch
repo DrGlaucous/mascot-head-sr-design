@@ -4,6 +4,10 @@
 	(generator_version "9.0")
 	(uuid "253ac3ec-8f2f-4d04-a564-6737e50d76a9")
 	(paper "A4")
+	(title_block
+		(title "Camera Light subsystem")
+		(rev "0.1")
+	)
 	(lib_symbols
 		(symbol "Device:LED"
 			(pin_numbers
@@ -312,429 +316,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_FET:IRF540N"
-			(pin_names
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "IRF540N"
-				(at 5.08 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
-				(at 5.08 -1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-						(italic yes)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "http://www.irf.com/product-info/datasheets/data/irf540n.pdf"
-				(at 5.08 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Description" "33A Id, 100V Vds, HEXFET N-Channel MOSFET, TO-220"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "HEXFET N-Channel MOSFET"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "TO?220*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "IRF540N_0_1"
-				(polyline
-					(pts
-						(xy 0.254 1.905) (xy 0.254 -1.905)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.254 0) (xy -2.54 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 2.286) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 0.508) (xy 0.762 -0.508)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 -1.27) (xy 0.762 -2.286)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(circle
-					(center 1.651 0)
-					(radius 2.794)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 2.54) (xy 2.54 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.54 1.778)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(circle
-					(center 2.54 -1.778)
-					(radius 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.794 0.508) (xy 2.921 0.381) (xy 3.683 0.381) (xy 3.81 0.254)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "IRF540N_1_1"
-				(pin input line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "G"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "D"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "S"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "power:+3.3V"
-			(power)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Value" "+3.3V"
-				(at 0 3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "+3.3V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+3.3V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:GND"
 			(power)
 			(pin_numbers
@@ -849,6 +430,17 @@
 		)
 		(uuid 4972479e-02fa-4bd6-aee0-87e3c49f82d6)
 	)
+	(text "Todo:\nFind optimal resistor\nvalue for 5 volt supply.\nWe're leeching off the LCD power supplies;\nthey have enough margin for this "
+		(exclude_from_sim no)
+		(at 21.844 63.754 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1f355af1-99a2-4f51-83f6-7fd4b4e502f7")
+	)
 	(text "Camera illumination"
 		(exclude_from_sim no)
 		(at 31.242 18.542 0)
@@ -859,15 +451,9 @@
 		)
 		(uuid "b2096db3-8ede-4d08-852b-87050dc2ebfc")
 	)
-	(junction
-		(at 99.06 45.72)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "86e8f606-caf6-40b3-be87-d654bd7a569c")
-	)
 	(wire
 		(pts
-			(xy 93.98 36.83) (xy 88.9 36.83)
+			(xy 88.9 36.83) (xy 106.68 36.83)
 		)
 		(stroke
 			(width 0)
@@ -897,16 +483,6 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 55.88) (xy 99.06 53.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "44ac5b7b-9f27-498c-94ed-f9e4399427c7")
-	)
-	(wire
-		(pts
 			(xy 41.91 27.94) (xy 45.72 27.94)
 		)
 		(stroke
@@ -924,16 +500,6 @@
 			(type default)
 		)
 		(uuid "5bda6801-3435-4f75-877d-0fff58819e45")
-	)
-	(wire
-		(pts
-			(xy 82.55 45.72) (xy 99.06 45.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6cc17ae1-228f-4d73-8bf1-dcb117037d70")
 	)
 	(wire
 		(pts
@@ -977,16 +543,6 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 45.72) (xy 99.06 44.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "929a117a-161f-4999-aa3a-19804494ed52")
-	)
-	(wire
-		(pts
 			(xy 76.2 36.83) (xy 81.28 36.83)
 		)
 		(stroke
@@ -994,16 +550,6 @@
 			(type default)
 		)
 		(uuid "aec1b8e1-959a-4f79-9c41-9c4518173f0a")
-	)
-	(wire
-		(pts
-			(xy 104.14 36.83) (xy 106.68 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c318abe4-f764-4fea-859c-7a3f2186ac7b")
 	)
 	(wire
 		(pts
@@ -1035,9 +581,9 @@
 		)
 		(uuid "fcab8cec-5314-42d9-b76b-f55d6c964035")
 	)
-	(global_label "LED ENABLE"
+	(global_label "LCD 5v5"
 		(shape input)
-		(at 82.55 45.72 180)
+		(at 31.75 27.94 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1045,9 +591,9 @@
 			)
 			(justify right)
 		)
-		(uuid "849592e0-7b4c-403b-8b1b-258a2f19f6b9")
+		(uuid "39b0967d-4425-43dc-8cb8-ded21ffd161e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 68.1349 45.72 0)
+			(at 20.8425 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1066,7 +612,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "109be3b5-1fd5-4e38-899d-49e21a993903")
-		(property "Reference" "D2"
+		(property "Reference" "D3"
 			(at 62.738 24.13 0)
 			(effects
 				(font
@@ -1082,7 +628,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 60.96 27.94 0)
 			(effects
 				(font
@@ -1127,81 +673,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "D2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_FET:IRF540N")
-		(at 99.06 39.37 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "228a18a9-fb5d-42c6-9be6-b3de514fe39d")
-		(property "Reference" "Q1"
-			(at 99.06 33.02 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "IRF540N"
-			(at 99.06 30.48 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
-			(at 97.155 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "http://www.irf.com/product-info/datasheets/data/irf540n.pdf"
-			(at 95.25 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Description" "33A Id, 100V Vds, HEXFET N-Channel MOSFET, TO-220"
-			(at 99.06 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "04acaf09-0901-45ae-975f-6f33e7d6ff71")
-		)
-		(pin "1"
-			(uuid "1658cc1e-8df4-4770-a078-8d1afd8268b2")
-		)
-		(pin "3"
-			(uuid "36bb9553-f232-4c2b-8ae8-a23546786606")
-		)
-		(instances
-			(project "MascotDesign"
-				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "Q1")
+					(reference "D3")
 					(unit 1)
 				)
 			)
@@ -1216,7 +688,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "29926356-c39b-4746-ba1f-5d756f7a7904")
-		(property "Reference" "D7"
+		(property "Reference" "D6"
 			(at 73.66 33.02 0)
 			(effects
 				(font
@@ -1232,7 +704,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 72.39 36.83 0)
 			(effects
 				(font
@@ -1277,7 +749,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "D7")
+					(reference "D6")
 					(unit 1)
 				)
 			)
@@ -1308,7 +780,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 85.09 36.83 0)
 			(effects
 				(font
@@ -1385,7 +857,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
 			(at 38.1 29.718 90)
 			(effects
 				(font
@@ -1452,7 +924,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 49.53 27.94 0)
 			(effects
 				(font
@@ -1512,7 +984,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "58ce50e5-81cf-411d-bbfa-3f7484f1d3af")
-		(property "Reference" "D4"
+		(property "Reference" "D7"
 			(at 87.376 24.13 0)
 			(effects
 				(font
@@ -1528,7 +1000,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 85.09 27.94 0)
 			(effects
 				(font
@@ -1573,74 +1045,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "D4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 31.75 27.94 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "71cb3780-4998-4241-91ee-991e8034b894")
-		(property "Reference" "#PWR02"
-			(at 35.56 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 27.94 27.9399 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 31.75 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 31.75 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 31.75 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "c7a8e3d3-6b47-428a-8d80-d6e9f338ef2e")
-		)
-		(instances
-			(project "MascotDesign"
-				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "#PWR02")
+					(reference "D7")
 					(unit 1)
 				)
 			)
@@ -1656,7 +1061,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "731cecac-88bf-472e-acfd-df00c8424823")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR03"
 			(at 113.03 36.83 0)
 			(effects
 				(font
@@ -1707,77 +1112,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 99.06 49.53 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "76e85068-3185-4a87-b2ec-813bbb277a9a")
-		(property "Reference" "R2"
-			(at 101.6 48.2599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "R1K"
-			(at 101.6 50.7999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 97.282 49.53 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 99.06 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 99.06 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b8641628-6f26-4311-8578-5f182aebf08c")
-		)
-		(pin "2"
-			(uuid "014208f7-49d9-4f43-a7a0-0a16f2924ed5")
-		)
-		(instances
-			(project "MascotDesign"
-				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "R2")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -1792,7 +1127,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "914ad3bf-b62d-4118-b115-a4ee83cdd187")
-		(property "Reference" "D6"
+		(property "Reference" "D4"
 			(at 62.738 33.02 0)
 			(effects
 				(font
@@ -1808,7 +1143,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 60.96 36.83 0)
 			(effects
 				(font
@@ -1853,73 +1188,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "D6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 99.06 55.88 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9188bdb8-eee9-490c-9d37-f1159478e4ca")
-		(property "Reference" "#PWR07"
-			(at 99.06 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 99.06 60.96 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 99.06 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 99.06 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 99.06 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6cb84739-8f24-4b7b-afa7-f8c6ae9aed1a")
-		)
-		(instances
-			(project "MascotDesign"
-				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "#PWR07")
+					(reference "D4")
 					(unit 1)
 				)
 			)
@@ -1934,7 +1203,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a8bbdc29-471f-4801-b926-c21344968ba2")
-		(property "Reference" "D5"
+		(property "Reference" "D2"
 			(at 51.562 33.274 0)
 			(effects
 				(font
@@ -1950,7 +1219,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 49.53 36.83 0)
 			(effects
 				(font
@@ -1995,7 +1264,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "D5")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -2010,7 +1279,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f8f2527c-40a8-44e4-a3f3-1efbe7929100")
-		(property "Reference" "D3"
+		(property "Reference" "D5"
 			(at 73.66 24.13 0)
 			(effects
 				(font
@@ -2026,7 +1295,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 72.39 27.94 0)
 			(effects
 				(font
@@ -2071,7 +1340,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/8b76e1c7-16fb-41f9-a46d-90890acff3e2"
-					(reference "D3")
+					(reference "D5")
 					(unit 1)
 				)
 			)

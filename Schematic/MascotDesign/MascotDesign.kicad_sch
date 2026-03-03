@@ -4,6 +4,10 @@
 	(generator_version "9.0")
 	(uuid "ba045f6c-d730-41b1-992e-d77c9aee61c5")
 	(paper "A4")
+	(title_block
+		(title "Mascot head breakout board")
+		(rev "0.1")
+	)
 	(lib_symbols)
 	(circle
 		(center 59.69 93.98)
@@ -177,6 +181,48 @@
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5"
 					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 168.91 17.78)
+		(size 48.26 24.13)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "e6c3b660-ad0f-46dc-8027-2bbf6ac044c1")
+		(property "Sheetname" "Hand Controller"
+			(at 168.91 17.0684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "hand_controller.kicad_sch"
+			(at 168.91 42.4946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "MascotDesign"
+				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5"
+					(page "5")
 				)
 			)
 		)

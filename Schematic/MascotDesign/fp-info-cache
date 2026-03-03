@@ -1,4 +1,4 @@
-25680784146315975
+25682556668122659
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -70993,6 +70993,13 @@ SPDT Horizontal switch, 4mm stem length
 0
 5
 3
+My_Library
+SOP65P810X115-32N
+
+
+0
+32
+32
 My_Library
 SS12D06
 

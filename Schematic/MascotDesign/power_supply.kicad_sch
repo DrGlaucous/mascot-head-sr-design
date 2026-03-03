@@ -4,6 +4,10 @@
 	(generator_version "9.0")
 	(uuid "c9e44bc5-7438-4316-814e-1b7013b55298")
 	(paper "A4")
+	(title_block
+		(title "Power Supply Subsystem")
+		(rev "0.1")
+	)
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_01x02"
 			(pin_names
@@ -1195,6 +1199,12 @@
 		(uuid "dc19e656-9b4a-468e-96cd-c05af1744754")
 	)
 	(junction
+		(at 80.01 72.39)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "361c96a6-7a61-4e1b-a659-3124b7094175")
+	)
+	(junction
 		(at 134.62 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1253,6 +1263,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "eaf02477-063f-4f36-beed-a118be4d7d60")
+	)
+	(junction
+		(at 113.03 36.83)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ee98d8bb-be9c-4c99-b182-b52b25819146")
 	)
 	(junction
 		(at 48.26 34.29)
@@ -1329,6 +1345,16 @@
 			(type default)
 		)
 		(uuid "20c0e244-1d5c-4531-945f-33090ac670ea")
+	)
+	(wire
+		(pts
+			(xy 113.03 30.48) (xy 113.03 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "297cb9fa-e03f-45e2-8977-3e8ca0b0e58b")
 	)
 	(wire
 		(pts
@@ -1412,6 +1438,16 @@
 	)
 	(wire
 		(pts
+			(xy 80.01 72.39) (xy 83.82 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f24b6cf-c1e6-4d43-b332-c96e34de0ff6")
+	)
+	(wire
+		(pts
 			(xy 149.86 33.02) (xy 149.86 36.83)
 		)
 		(stroke
@@ -1429,6 +1465,16 @@
 			(type default)
 		)
 		(uuid "71e525d2-3f8f-4ebb-adc6-6a9f875eb4b7")
+	)
+	(wire
+		(pts
+			(xy 113.03 36.83) (xy 134.62 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7647fada-c7e8-479b-8b26-e3640e712fbd")
 	)
 	(wire
 		(pts
@@ -1532,7 +1578,7 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 36.83) (xy 134.62 36.83)
+			(xy 109.22 36.83) (xy 113.03 36.83)
 		)
 		(stroke
 			(width 0)
@@ -1632,7 +1678,7 @@
 	)
 	(wire
 		(pts
-			(xy 77.47 72.39) (xy 83.82 72.39)
+			(xy 77.47 72.39) (xy 80.01 72.39)
 		)
 		(stroke
 			(width 0)
@@ -1661,7 +1707,7 @@
 		(uuid "6350ed7a-8d49-4450-8b73-ad2b0a34f1b8")
 	)
 	(label "LCD 5v5"
-		(at 110.49 36.83 0)
+		(at 116.84 36.83 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1670,7 +1716,29 @@
 		)
 		(uuid "fbc23113-550f-40e5-bacc-7a6f4d7ddb17")
 	)
-	(global_label "AMP POWER IN"
+	(global_label "LCD 5v5"
+		(shape input)
+		(at 113.03 30.48 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9ff05dc1-2c0e-4a06-9127-57ea2f68f21a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 123.9375 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "12V SWITCHED"
 		(shape input)
 		(at 83.82 72.39 0)
 		(fields_autoplaced yes)
@@ -1682,7 +1750,7 @@
 		)
 		(uuid "cc766749-f393-42bc-8496-770c5f5b701f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 100.9566 72.39 0)
+			(at 100.5332 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1793,7 +1861,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 55.88 26.67 0)
 			(effects
 				(font
@@ -1934,7 +2002,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
 			(at 132.08 27.94 0)
 			(effects
 				(font
@@ -1992,7 +2060,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4b1de171-7ea8-40f7-8561-89275d5816b0")
-		(property "Reference" "J4"
+		(property "Reference" "J2"
 			(at 125.73 66.04 90)
 			(effects
 				(font
@@ -2008,7 +2076,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
 			(at 124.46 62.23 0)
 			(effects
 				(font
@@ -2050,7 +2118,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
-					(reference "J4")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -2131,7 +2199,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9070762d-85fb-41c3-bf06-b7b1ebc780bb")
-		(property "Reference" "J2"
+		(property "Reference" "J4"
 			(at 148.59 21.59 90)
 			(effects
 				(font
@@ -2147,7 +2215,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
 			(at 147.32 27.94 0)
 			(effects
 				(font
@@ -2189,7 +2257,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
-					(reference "J2")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -2222,7 +2290,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "TerminalBlock_RND:TerminalBlock_RND_205-00001_1x02_P5.00mm_Horizontal"
 			(at 39.37 37.846 90)
 			(effects
 				(font
@@ -2274,7 +2342,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aae81f8b-581d-4b8c-aa80-31d695a8bf52")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR07"
 			(at 121.92 46.99 0)
 			(effects
 				(font
@@ -2324,7 +2392,72 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
-					(reference "#PWR05")
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 80.01 72.39 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "b54abf3c-ad85-4f70-8b61-570af56c47a9")
+		(property "Reference" "#FLG03"
+			(at 80.01 70.485 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 84.074 67.818 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 80.01 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 80.01 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 80.01 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "23bb6878-0372-41fb-b160-b1b425bcab6e")
+		)
+		(instances
+			(project "MascotDesign"
+				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
@@ -2406,7 +2539,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e47b1190-320d-4433-88a0-4c2941d7e0e2")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR05"
 			(at 48.26 49.53 0)
 			(effects
 				(font
@@ -2456,7 +2589,7 @@
 		(instances
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
-					(reference "#PWR03")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -2554,7 +2687,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "My_Library:SK12D07VG4"
 			(at 69.85 34.29 0)
 			(effects
 				(font
