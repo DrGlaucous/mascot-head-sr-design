@@ -1253,12 +1253,6 @@
 		(uuid "95defc47-974e-498c-a050-87126f425b58")
 	)
 	(junction
-		(at 39.37 41.91)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c8f38e92-cbcc-4bd6-af44-8ae7de0d27a8")
-	)
-	(junction
 		(at 113.03 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1315,6 +1309,16 @@
 	(no_connect
 		(at 121.92 57.15)
 		(uuid "eefd89e7-15f6-4c4a-ab65-dd7f3ada1e86")
+	)
+	(wire
+		(pts
+			(xy 48.26 31.75) (xy 48.26 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "037be376-1c5d-44df-9ac3-f8303a7a9572")
 	)
 	(wire
 		(pts
@@ -1706,16 +1710,6 @@
 		)
 		(uuid "6350ed7a-8d49-4450-8b73-ad2b0a34f1b8")
 	)
-	(label "LCD 5v5"
-		(at 116.84 36.83 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "fbc23113-550f-40e5-bacc-7a6f4d7ddb17")
-	)
 	(global_label "LCD 5v5"
 		(shape input)
 		(at 113.03 30.48 0)
@@ -1786,7 +1780,7 @@
 				)
 			)
 		)
-		(property "Footprint" "My_Library:Generic Buck Regulator"
+		(property "Footprint" "TerminalBlock_RND:TerminalBlock_RND_205-00003_1x04_P5.00mm_Horizontal"
 			(at 100.33 48.26 0)
 			(effects
 				(font
@@ -1929,7 +1923,7 @@
 				)
 			)
 		)
-		(property "Footprint" "My_Library:Generic Buck Regulator"
+		(property "Footprint" "TerminalBlock_RND:TerminalBlock_RND_205-00003_1x04_P5.00mm_Horizontal"
 			(at 100.33 62.23 0)
 			(effects
 				(font
@@ -2465,7 +2459,7 @@
 	)
 	(symbol
 		(lib_id "power:+12V")
-		(at 48.26 34.29 0)
+		(at 48.26 31.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2474,7 +2468,7 @@
 		(fields_autoplaced yes)
 		(uuid "be63bc6c-6e2b-4723-ac31-1a3dff440cd5")
 		(property "Reference" "#PWR04"
-			(at 48.26 38.1 0)
+			(at 48.26 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2483,7 +2477,7 @@
 			)
 		)
 		(property "Value" "+12V"
-			(at 48.26 29.21 0)
+			(at 48.26 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2491,7 +2485,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 48.26 34.29 0)
+			(at 48.26 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2500,7 +2494,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 48.26 34.29 0)
+			(at 48.26 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2509,7 +2503,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+12V\""
-			(at 48.26 34.29 0)
+			(at 48.26 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2590,72 +2584,6 @@
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
 					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 39.37 41.91 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "edbcb468-8eb6-4bfd-b561-3c5f427a7cd1")
-		(property "Reference" "#FLG02"
-			(at 39.37 43.815 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 39.37 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 39.37 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 39.37 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 39.37 41.91 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "22ead5fb-78fd-43d4-9277-945ea0fb96be")
-		)
-		(instances
-			(project "MascotDesign"
-				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
-					(reference "#FLG02")
 					(unit 1)
 				)
 			)

@@ -16,6 +16,14 @@ Useful info links:
 - 
 
 
+Things we've checked out from lab:
+- x2 micro USB cables (robert)
+- x1 usb TTL adapter (ed)
+- x1 mini usb cable (ed)
+- x1 HDMI + DP cable (robert)
+- x1 Rpi3 (luis)
+
+
 
 
 
