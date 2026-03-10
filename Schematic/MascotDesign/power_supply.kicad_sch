@@ -1202,7 +1202,7 @@
 		(at 80.01 72.39)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "361c96a6-7a61-4e1b-a659-3124b7094175")
+		(uuid "32787aea-548e-4190-b2f5-4bc04e690226")
 	)
 	(junction
 		(at 134.62 36.83)
@@ -1283,28 +1283,12 @@
 		(uuid "f64901e7-9764-40d1-b0d5-df16168578dd")
 	)
 	(no_connect
-		(at 144.78 33.02)
-		(uuid "0d0f5252-6bee-4f5c-9433-32a1dec0cca7")
-	)
-	(no_connect
-		(at 147.32 33.02)
-		(uuid "2ec4dd3a-b38b-41b0-9e41-ac5899608fc6")
-	)
-	(no_connect
-		(at 129.54 33.02)
-		(uuid "42518eaf-0ff5-4e64-87ff-5c2224974d8d")
-	)
-	(no_connect
 		(at 124.46 57.15)
 		(uuid "6c0cf7fd-ef99-4faf-8280-4bc3685f1f21")
 	)
 	(no_connect
 		(at 74.93 31.75)
 		(uuid "764d52ee-4be2-4b09-a052-4f6d02cc48b9")
-	)
-	(no_connect
-		(at 132.08 33.02)
-		(uuid "a54e0016-a63d-466f-913d-515e41ed9404")
 	)
 	(no_connect
 		(at 121.92 57.15)
@@ -1439,16 +1423,6 @@
 			(type default)
 		)
 		(uuid "5ba124c4-8e60-4a7a-b05f-ff778c75960d")
-	)
-	(wire
-		(pts
-			(xy 80.01 72.39) (xy 83.82 72.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5f24b6cf-c1e6-4d43-b332-c96e34de0ff6")
 	)
 	(wire
 		(pts
@@ -1589,6 +1563,16 @@
 			(type default)
 		)
 		(uuid "b986e362-8cdf-4ee9-8c0e-d964bb81448e")
+	)
+	(wire
+		(pts
+			(xy 83.82 72.39) (xy 80.01 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bd783a41-d22b-4a36-a162-bf77d747f985")
 	)
 	(wire
 		(pts
@@ -1830,6 +1814,75 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
+		(at 149.86 27.94 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0f17b94e-71cb-46a9-b897-80e63d80009f")
+		(property "Reference" "J4"
+			(at 149.86 22.352 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LCD power USB"
+			(at 139.446 25.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 149.86 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 149.86 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 149.86 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "228ec209-55f8-46bb-ab91-05663d05a1e4")
+		)
+		(pin "1"
+			(uuid "2f51466d-5f8a-4145-8bfe-1de10b33321a")
+		)
+		(instances
+			(project "MascotDesign"
+				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
+					(reference "J4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
 		(at 55.88 26.67 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1973,79 +2026,6 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
-		(at 132.08 27.94 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "3c88925d-6ce0-40fd-8001-0a08e07f3416")
-		(property "Reference" "J3"
-			(at 133.35 21.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LCD power USB"
-			(at 130.556 24.13 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
-			(at 132.08 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 132.08 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 132.08 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "11b52336-45dd-4b8e-83ed-a9288c0d3557")
-		)
-		(pin "3"
-			(uuid "c92ebabb-28db-4532-99b6-1a6bb6beeaac")
-		)
-		(pin "2"
-			(uuid "fcbd33cc-f724-4765-aec2-e22f6cda1587")
-		)
-		(pin "1"
-			(uuid "bab7066c-bf5a-43d4-ab0c-7d2d9df85079")
-		)
-		(instances
-			(project "MascotDesign"
-				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
-					(reference "J3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector_Generic:Conn_01x04")
 		(at 124.46 62.23 90)
 		(mirror x)
 		(unit 1)
@@ -2119,6 +2099,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 134.62 27.94 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4d8c80c0-8ed2-4653-8cff-778c744282cc")
+		(property "Reference" "J3"
+			(at 134.62 22.352 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LCD power USB"
+			(at 124.206 25.4 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 134.62 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 134.62 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 134.62 27.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "bf9ced87-de2d-4f69-be4a-7b54e0eeb2c7")
+		)
+		(pin "1"
+			(uuid "498dfd1f-2e47-4096-b8e5-14bd5452698b")
+		)
+		(instances
+			(project "MascotDesign"
+				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 39.37 34.29 0)
 		(unit 1)
@@ -2178,80 +2227,6 @@
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
 					(reference "#FLG01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector_Generic:Conn_01x04")
-		(at 147.32 27.94 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "9070762d-85fb-41c3-bf06-b7b1ebc780bb")
-		(property "Reference" "J4"
-			(at 148.59 21.59 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LCD power USB"
-			(at 148.59 24.13 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
-			(at 147.32 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 147.32 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 147.32 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "ebbf3eec-aabe-437f-94c1-3f55242fd50d")
-		)
-		(pin "3"
-			(uuid "cf42cc0c-f4fa-431b-8d22-a5f295e92991")
-		)
-		(pin "2"
-			(uuid "bf079acb-7427-4a43-a525-eb950a71e717")
-		)
-		(pin "1"
-			(uuid "2943dd6c-daa6-48d7-b1f0-731e22b618c4")
-		)
-		(instances
-			(project "MascotDesign"
-				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
-					(reference "J4")
 					(unit 1)
 				)
 			)
