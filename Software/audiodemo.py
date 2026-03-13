@@ -4,9 +4,15 @@ import collections
 
 import butterworth
 
+import platform
+
+machine = platform.uname().machine
+
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
-SAMPLE_RATE = 44100
+SAMPLE_RATE = 48000
+if (machine == 'x86_64'):
+    SAMPLE_RATE = 44100
 BUFFER_LENGTH = 1024
 
 pa = pyaudio.PyAudio()
@@ -15,7 +21,7 @@ buffer = collections.deque()
 silence = b"\x00" * (BUFFER_LENGTH * 2)  # initialize with silence (16‑bit audio)
 buffer.append(silence)
 
-myFilter = butterworth.Filter(SAMPLE_RATE)
+myFilter = butterworth.Filter(SAMPLE_RATE, BUFFER_LENGTH)
 
 firstTime = True
 
@@ -40,7 +46,6 @@ mic_stream = pa.open(
     channels=CHANNELS,
     rate=SAMPLE_RATE,
     input=True,
-    input_device_index=12,
     frames_per_buffer=BUFFER_LENGTH,
     stream_callback=input_callback
 )
@@ -50,7 +55,6 @@ speaker_stream = pa.open(
     channels=CHANNELS,
     rate=SAMPLE_RATE,
     output=True,
-    output_device_index=12,
     frames_per_buffer=BUFFER_LENGTH,
     stream_callback=output_callback
 )
