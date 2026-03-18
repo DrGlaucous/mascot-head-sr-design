@@ -1,0 +1,16 @@
+For setting up the displays and cameras, the CM3 doesn't have them enabled by default.
+
+See this tutorial:
+
+
+https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/694/Attaching_RP_Official_7in_Display_Web.pdf
+
+
+
+
+
+
+
+and these forum links for extra help:
+https://forums.raspberrypi.com/viewtopic.php?t=239367
+https://www.raspberrypi.com/documentation/computers/compute-module.html
