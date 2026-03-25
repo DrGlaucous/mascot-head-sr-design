@@ -1447,8 +1447,24 @@
 		(uuid "f6624e42-9f2e-40a9-90c6-7bc80cb07de0")
 	)
 	(no_connect
+		(at 134.62 53.34)
+		(uuid "0e467ab4-725d-4640-92f9-f5666907c70b")
+	)
+	(no_connect
+		(at 134.62 50.8)
+		(uuid "4e7b2e3d-4717-4591-a759-c5fbbe721c87")
+	)
+	(no_connect
+		(at 134.62 55.88)
+		(uuid "58be4de4-1bad-433b-9e25-465992fb6809")
+	)
+	(no_connect
 		(at 124.46 57.15)
 		(uuid "6c0cf7fd-ef99-4faf-8280-4bc3685f1f21")
+	)
+	(no_connect
+		(at 134.62 48.26)
+		(uuid "9357cf8c-62f4-4c0d-902a-ed957dac7db9")
 	)
 	(no_connect
 		(at 121.92 57.15)
@@ -1997,6 +2013,82 @@
 			(project "MascotDesign"
 				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
 					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x04")
+		(at 139.7 50.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1c5a1bdb-ae78-4590-94ac-3694da7ebfdf")
+		(property "Reference" "J4"
+			(at 142.24 50.7999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "Dummy Header"
+			(at 142.24 53.3399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical"
+			(at 139.7 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 139.7 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 139.7 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "1ff14f36-0aff-492c-89a7-8fa541675c7c")
+		)
+		(pin "2"
+			(uuid "76317967-10c0-4e4e-9aca-81572ccf529c")
+		)
+		(pin "3"
+			(uuid "4f6d0879-953c-4e60-ad96-4834458c4e1e")
+		)
+		(pin "1"
+			(uuid "35aa7ae2-a307-4cbe-9a01-e0323cd91988")
+		)
+		(instances
+			(project ""
+				(path "/ba045f6c-d730-41b1-992e-d77c9aee61c5/621dc98a-3a96-4433-a17f-2055bce50a9c"
+					(reference "J4")
 					(unit 1)
 				)
 			)
