@@ -17,7 +17,7 @@ from typing import List
 
 
 # ── Configuration ────────────────────────────────────────────────────────────
-CIRCLE_RADIUS = 20
+CIRCLE_RADIUS = 150
 BG_COLOR      = "white"
 CIRCLE_COLOR  = "black"
 WINDOW_TITLE  = "Gaze Position Display"
@@ -100,8 +100,12 @@ class GazeDisplay:
         now = time.perf_counter()
         self.frame_times.append(now)
 
-        # Read the latest gaze coordinates from the shared list
-        x, y = float(self._gaze_pos[0]), float(self._gaze_pos[1])
+        # Read the latest gaze coordinates from the shared list.
+        # Input is normalised: 0 = centre, -1 = left/down, +1 = right/up.
+        # Map to screen pixels; Y is flipped because screen-Y grows downward.
+        nx, ny = float(self._gaze_pos[0]), float(self._gaze_pos[1])
+        x = ( nx + 1) / 2 * self.screen_w
+        y = (-ny + 1) / 2 * self.screen_h
 
         self.canvas.coords(
             self.circle,
@@ -130,13 +134,10 @@ if __name__ == "__main__":
 
     def fake_tracker():
         t = 0.0
-        root_ref = None
-        # Wait briefly so the window exists before we query its size
         time.sleep(0.5)
-        cx, cy, r = 960, 540, 400          # centre + radius – adjust to taste
         while True:
-            gaze_pos[0] = cx + r * math.cos(t)
-            gaze_pos[1] = cy + r * math.sin(t) * 0.5
+            gaze_pos[0] =       math.cos(t)        # x: -1 … +1
+            gaze_pos[1] = 0.5 * math.sin(t)        # y: -0.5 … +0.5
             t += 0.02
             time.sleep(1 / 60)
 
