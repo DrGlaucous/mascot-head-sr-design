@@ -28,17 +28,9 @@ if (len(sys.argv) == 3):
 myFilter = butterworth.Filter(SAMPLE_RATE, LOW_FREQ, HIGH_FREQ)                 
 pa = pyaudio.PyAudio()                                                          
                                                                                 
-firstTime = True                                                                
                                                                                 
 def input_callback(in_data, frame_count, time_info, status):                    
     global buffer                                                               
-    global firstTime                                                            
-    if firstTime:                                                               
-        print(in_data[:10])                                                     
-        firstTime = False                                                       
-    # buffer.append(in_data)                                                    
-    print(in_data[:40])                                                         
-    print(frame_count)                                                          
     buffer.append(myFilter.filter(in_data))                                     
     return (None, pyaudio.paContinue)                                           
                                                                                 
