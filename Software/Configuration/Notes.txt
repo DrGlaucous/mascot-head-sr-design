@@ -1,16 +1,12 @@
-For setting up the displays and cameras, the CM3 doesn't have them enabled by default.
+**If OS gets corrupted again**
 
-See this tutorial:
+must copy cmdline.txt and config.txt onto the SDcard (with those names exactly). 
+The good versions are in this folder, just remove the "CM4_" prefix when you copy to SDcard.
 
+after flashing a new image onto the pi and copying the config files into the SDcard, run the pi and 
+talk to it using HDMI screen and a USB keyboard. 
 
-https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/694/Attaching_RP_Official_7in_Display_Web.pdf
+run this command on the Pi: sudo systemctl enable getty@ttyGS0.service
+Check that it worked with: systemctl is-enabled getty@ttyGS0.service (should return "enabled")
 
-
-
-
-
-
-
-and these forum links for extra help:
-https://forums.raspberrypi.com/viewtopic.php?t=239367
-https://www.raspberrypi.com/documentation/computers/compute-module.html
+after that, you can talk to it through serial like usual.
