@@ -15,7 +15,8 @@ class EyeTracker:
         """
         # Load OpenCV's pre-trained Haar cascade for eye detection
         #! cv2.data might not be recognized by your IDE, but it should work when you run the script
-        self.eyeCascade = cv2.CascadeClassifier('haarcascade_eye.xml')
+        eye_cascade_path = cv2.data.haarcascades + 'haarcascade_eye.xml'
+        self.eyeCascade = cv2.CascadeClassifier(eye_cascade_path)
         
         # Buffer for storing recent bounding boxes to calculate the median
         self.roiHistory = deque(maxlen=roiHistorySize)

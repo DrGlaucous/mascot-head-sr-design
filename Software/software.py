@@ -13,8 +13,10 @@ import collections
 import os
 from time import perf_counter
 import tkinter as tk
+import cv2
 # import tkinter as tk
-
+path = cv2.data.haarcascades + 'haarcascade_eye.xml'
+eye_cascade = cv2.CascadeClassifier(path)
 # Note, call_eye_tracking has a list of booleans, only the first one is important
 # It tracks if call_eye_tracking has produced new samples
 # This is for display_eyes so it can change its behavior
@@ -56,18 +58,15 @@ def alter_voice():
     os.system("python Software\\audiodemo.py")
     # return
 # if __name__ == "__main__":
+"""
+    Research Python XLib
+    Create a server for each display
+"""
 def main():
     tracemalloc.start()
     t3 = threading.Thread(target= alter_voice, args=())
     t3.start()
 
-    root = tk.Tk()
-    screenWidth = root.winfo_screenwidth()
-    screenHeight = root.winfo_screenheight()
-
-    # Created for simplicity and to support screens of different sizes
-    upperHalfScreenThreshold = screenHeight / 2
-    rightHalfScreenThreshold = screenWidth / 2
     # Note, we are using the convention [x, y]
     gaze_pos = [0,0]
     def wrap_eye_tracking():
@@ -75,20 +74,20 @@ def main():
         tracker = EyeTracker(gazeBufferSize= 20, roiHistorySize=120)        
         while True:
             ret, frame = cap.read()
-            if(ret is None or frame is None):
+            if(frame is None):
                 gaze_pos[0] = 0
                 gaze_pos[1] = 0                    
                 return
-            annotatedFrame, gazeVector = tracker.processFrame(frame, showGray=False, showInstantGaze=True)
+            annotatedFrame, gazeVector = tracker.processFrame(frame, showGray=False, showInstantGaze=False)
             if(gazeVector is None):
                 gazeVector = [0,0]  
             # If gaze_pos[0] > rightHalfScreenThreshold, it should be positive
-            gaze_pos[0] = (gazeVector[0] - rightHalfScreenThreshold) / rightHalfScreenThreshold
-            gaze_pos[1] = (gazeVector[1] - upperHalfScreenThreshold) / upperHalfScreenThreshold
+            gaze_pos[0] = (gazeVector[0])
+            gaze_pos[1] = (gazeVector[1])
             time.sleep(1/60)
+
     t2 = threading.Thread(target=wrap_eye_tracking, daemon=True)
     t2.start()
-
     """ 
     gaze_vector = [x,y]
     Coordinate plane
