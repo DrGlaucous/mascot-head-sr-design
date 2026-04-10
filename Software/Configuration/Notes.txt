@@ -10,3 +10,37 @@ run this command on the Pi: sudo systemctl enable getty@ttyGS0.service
 Check that it worked with: systemctl is-enabled getty@ttyGS0.service (should return "enabled")
 
 after that, you can talk to it through serial like usual.
+
+
+-----------------------------------------------
+
+
+For setting up the displays and cameras, the CM3 doesn't have them enabled by default.
+
+See this tutorial:
+
+
+https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/694/Attaching_RP_Official_7in_Display_Web.pdf
+
+
+The github documentation for the CM3 back when they still had it:
+https://github.com/raspberrypi/documentation/tree/b4a1c04f546a82b662ad83bd408a42df48147170/hardware/computemodule
+another tutorial on setting up cameras on the CM3:
+https://github.com/raspberrypi/documentation/blob/b4a1c04f546a82b662ad83bd408a42df48147170/hardware/computemodule/cmio-camera.md
+
+
+How to compile dts files into binaries:
+https://forums.raspberrypi.com/viewtopic.php?t=171745
+
+
+and these forum links for extra help:
+https://forums.raspberrypi.com/viewtopic.php?t=239367
+https://www.raspberrypi.com/documentation/computers/compute-module.html
+
+
+
+
+
+
+
+
