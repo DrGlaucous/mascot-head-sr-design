@@ -24,6 +24,7 @@ class EyeTracker:
 
         # Circular buffer for signal stabilization (Moving Average)
         self.gazeBuffer = deque(maxlen=gazeBufferSize)
+        self.stabilizedGaze = (0.0, 0.0)  # Initialize stabilized gaze vector
         
     def _updateRoi(self, grayFrame: np.ndarray) -> Optional[Tuple[int, int, int, int]]:
         """Detects the eye using Haar Cascades and applies a median filter over time."""
@@ -198,5 +199,5 @@ class EyeTracker:
             cv2.putText(displayFrame, f"Gaze Vector (dx, dy): ({stabilizedGaze[0]:.1f}, {stabilizedGaze[1]:.1f})", 
                         (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
             
-
+        self.stabilizedGaze = stabilizedGaze  # Store the latest stabilized gaze for external access
         return displayFrame, stabilizedGaze
