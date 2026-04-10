@@ -9,8 +9,8 @@ import butterworth
 FORMAT = pyaudio.paInt16                                                        
 CHANNELS = 1                                                                    
 SAMPLE_RATE = 44100                                                             
-if (os.uname().nodename == "pi"):                                               
-    SAMPLE_RATE = 48000                                                         
+# if (os.uname().nodename == "pi"):                                               
+#     SAMPLE_RATE = 48000                                                         
 BUFFER_LENGTH = 1024                                                            
                                                                                 
 pa = pyaudio.PyAudio()                                                          
@@ -60,6 +60,8 @@ speaker_stream = pa.open(
                                                                                 
 mic_stream.start_stream()                                                       
 speaker_stream.start_stream()                                                   
-                                                                                
-while mic_stream.is_active() and speaker_stream.is_active():                    
+stopRunning = 0
+
+while mic_stream.is_active() and speaker_stream.is_active() and stopRunning < 50:                    
     time.sleep(0.1) 
+    stopRunning += 1

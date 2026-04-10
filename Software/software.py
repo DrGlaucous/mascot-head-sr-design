@@ -5,68 +5,113 @@ import time # Sleeping and time control
 import multiprocessing as mp
 from multiprocessing import *
 from multiprocessing.pool import *
+from EyeTracker import *
+from display import *
+from butterworth import *
+import pyaudio
+import collections
+import os
+from time import perf_counter
+import tkinter as tk
+# import tkinter as tk
 
 # Note, call_eye_tracking has a list of booleans, only the first one is important
 # It tracks if call_eye_tracking has produced new samples
 # This is for display_eyes so it can change its behavior
 def call_eye_tracking(list_o_list, index, new_data):
-    # print("Print add eye-tracking when it is done")
-    list_o_list[index] = ['X', 'Y']
+    # There is only one camera on my device
+    # This may work better on the Pi with two cameras
+    cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        print("Error")
+        return
+    gazeSize = 20
+    tracker = EyeTracker(gazeBufferSize=gazeSize, roiHistorySize=gazeSize*6)
+    ret, frame = cap.read()
+    if not ret:
+        return
+    annotatedFrame, gazevector = tracker.processFrame(frame, False, False)
     new_data[0] = True
-    time.sleep(.1)
-    # print("Samples produced")
+    list_o_list[index] = gazevector
+    return
 
 # Using the list of booleans, new_data, this subsystem can change its behavior
 # Note, it sets new_data to false when it is done processing it. 
 # Call_eye_tracking's job is to set it to true when it produces new samples
 def display_eyes(average_eye_coords_left, average_eye_coords_right, new_data):
-    print("Add display when said subsystem is done")
-    print("New samples? ", new_data[0])
+    # print("Add display when said subsystem is done")
+    # print("New samples? ", new_data[0])
+    # if(new_data[0]):
+    #     print(average_eye_coords_left)
+    #     print(average_eye_coords_right)
+    #     new_data[0] = False
+    # else:
+    #     print("Smoothing animations")
     if(new_data[0]):
-        print(average_eye_coords_left)
-        print(average_eye_coords_right)
-        new_data[0] = False
-    else:
-        print("Smoothing animations")
+        display = GazeDisplay(average_eye_coords_left)
+        display.run()
     return
 
 def alter_voice():
-    x = 0
-    while(x < 5):
-        print("Add voice subsystem when it is done")
-        x += 1
-        time.sleep(0.2)
+    os.system("python Software\\audiodemo.py")
     # return
 # if __name__ == "__main__":
 def main():
     tracemalloc.start()
-    loop = 0
-    while(loop < 2):
-        threads = [None, None]
-        average_eye_position = [[0,0], [0,0]]
-        new_data = [False] # List of one element, just so threads can write to the address
+    t3 = threading.Thread(target= alter_voice, args=())
+    t3.start()
 
-        for eyes in range(len(threads)):
-            threads[eyes] = threading.Thread(target= call_eye_tracking, args= (average_eye_position, eyes, new_data))
-            threads[eyes].start()
+    root = tk.Tk()
+    screenWidth = root.winfo_screenwidth()
+    screenHeight = root.winfo_screenheight()
 
-        t3 = threading.Thread(target= alter_voice, args=())
-        t3.start()
-        # Forces display to run continuously until call_eye_tracking is done
-        while(threads[0].is_alive() and threads[1].is_alive()):
-            t2 = threading.Thread(target= display_eyes, args=(average_eye_position[0], average_eye_position[1], new_data))
-            t2.start()
-            time.sleep(0.015)
-            # print("Threads stack_size", threading.stack_size())
-        for results in range(len(threads)):
-            threads[results].join()        
-        t2.join()
-        t3.join()
-        loop += 1
-        print("\n")
+    # Created for simplicity and to support screens of different sizes
+    upperHalfScreenThreshold = screenHeight / 2
+    rightHalfScreenThreshold = screenWidth / 2
+    # Note, we are using the convention [x, y]
+    gaze_pos = [0,0]
+    def wrap_eye_tracking():
+        cap = cv2.VideoCapture(0)
+        tracker = EyeTracker(gazeBufferSize= 20, roiHistorySize=120)        
+        while True:
+            ret, frame = cap.read()
+            if(ret is None or frame is None):
+                gaze_pos[0] = 0
+                gaze_pos[1] = 0                    
+                return
+            annotatedFrame, gazeVector = tracker.processFrame(frame, showGray=False, showInstantGaze=True)
+            if(gazeVector is None):
+                gazeVector = [0,0]  
+            # If gaze_pos[0] > rightHalfScreenThreshold, it should be positive
+            gaze_pos[0] = (gazeVector[0] - rightHalfScreenThreshold) / rightHalfScreenThreshold
+            gaze_pos[1] = (gazeVector[1] - upperHalfScreenThreshold) / upperHalfScreenThreshold
+            time.sleep(1/60)
+    t2 = threading.Thread(target=wrap_eye_tracking, daemon=True)
+    t2.start()
+
+    """ 
+    gaze_vector = [x,y]
+    Coordinate plane
+    Note: [0,0] is the origin
+    (-1,1)    |     (1,1)
+              |
+              |
+    ----------|----------
+              |
+              |
+    (-1,-1)   |     (1,-1)
+    Eye-tracking ret
+    """
+    if(gaze_pos is None):
+        gaze_pos = [0,0]
+    gaze_pos[0] = 0
+    gaze_pos[1] = 0
+    display = GazeDisplay(gaze_pos)
+    display.run()
 
     memoryUsage = tracemalloc.get_traced_memory()
-    print("Current memory usage: ", memoryUsage[0], " bytes\nPeak memory usage: ", memoryUsage[1], " bytes.")
+    print("Current memory usage: ", memoryUsage[0] / 1000000, " megabytes\
+          \nPeak memory usage: ", memoryUsage[1] / 1000000, "megabytes.")
 
 # To profile
 if __name__ == "__main__":
