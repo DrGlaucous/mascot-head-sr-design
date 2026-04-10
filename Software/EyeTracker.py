@@ -4,6 +4,7 @@ from collections import deque
 from typing import Tuple, Optional, List
 
 class EyeTracker:
+
     def __init__(self, gazeBufferSize: int = 10, roiHistorySize: int = 60):
         """
         Initializes the EyeTracker.
@@ -14,7 +15,7 @@ class EyeTracker:
         """
         # Load OpenCV's pre-trained Haar cascade for eye detection
         #! cv2.data might not be recognized by your IDE, but it should work when you run the script
-        self.eyeCascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+        self.eyeCascade = cv2.CascadeClassifier('haarcascade_eye.xml')
         
         # Buffer for storing recent bounding boxes to calculate the median
         self.roiHistory = deque(maxlen=roiHistorySize)
@@ -25,6 +26,7 @@ class EyeTracker:
         # Circular buffer for signal stabilization (Moving Average)
         self.gazeBuffer = deque(maxlen=gazeBufferSize)
         self.stabilizedGaze = (0.0, 0.0)  # Initialize stabilized gaze vector
+        self.normalizedGaze = (0.0, 0.0)  # Initialize normalized gaze vector
         
     def _updateRoi(self, grayFrame: np.ndarray) -> Optional[Tuple[int, int, int, int]]:
         """Detects the eye using Haar Cascades and applies a median filter over time."""
@@ -149,10 +151,14 @@ class EyeTracker:
 
         return avgDx, avgDy
 
-    def processFrame(self, frame: np.ndarray, showGray = False, showInstantGaze = False) -> Tuple[np.ndarray, Optional[Tuple[float, float]]]:
+    def processFrame(self, frame: np.ndarray, 
+                     showGray = False, showInstantGaze = False,
+                     annotateFrame = False) -> Tuple[np.ndarray, Optional[Tuple[float, float]]]:
         """
         Main execution pipeline for a single frame. 
         Returns the annotated visualization frame and the stabilized gaze vector.
+        If annotateFrame is True, it will draw the gaze vector and other visualizations on the frame.
+            Turn to False to avoid the overhead of drawing
         """
         # 1. Preprocessing 
         gray, offset, anchorCropped = self.preprocessFrame(frame)
@@ -167,7 +173,7 @@ class EyeTracker:
         # Draw ROI box if active
         if self.stableRoi:
             x, y, w, h = self.stableRoi
-            cv2.rectangle(displayFrame, (x, y), (x+w, y+h), (255, 0, 255), 2)
+            if annotateFrame: cv2.rectangle(displayFrame, (x, y), (x+w, y+h), (255, 0, 255), 2)
 
         if pupilPos and anchorCropped:
             # 3. Gaze Estimation (Using local cropped coordinates)
@@ -184,20 +190,29 @@ class EyeTracker:
 
             if showGray: displayFrame[offset[1]:offset[1]+gray.shape[0], offset[0]:offset[0]+gray.shape[1]] = cv2.cvtColor(pupilMask, cv2.COLOR_GRAY2BGR)
 
-            # Draw Pupil (Blue) and the new Anchor/Center (Red)
-            if showInstantGaze: cv2.circle(displayFrame, pupilGlobal,     5, (255, 0, 0), -1)
-            cv2.circle(displayFrame, stabilizedPupil, 3, (0, 255, 0), -1)
-            cv2.circle(displayFrame, anchorGlobal,    3, (0, 0, 255), -1)
-            
-            # Draw difference vector line connecting anchor and pupil
-            if showInstantGaze: cv2.line(displayFrame, anchorGlobal, pupilGlobal,     (255, 0, 255), 2)
-            cv2.line(displayFrame, anchorGlobal, stabilizedPupil, (0, 255, 255), 2)
 
-            displayFrame = cv2.flip(displayFrame, 1)
-            
-            # Display standardized gaze reading on screen
-            cv2.putText(displayFrame, f"Gaze Vector (dx, dy): ({stabilizedGaze[0]:.1f}, {stabilizedGaze[1]:.1f})", 
-                        (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+            if annotateFrame:
+                # Draw Pupil (Blue) and the new Anchor/Center (Red)
+                if showInstantGaze: cv2.circle(displayFrame, pupilGlobal,     5, (255, 0, 0), -1)
+                cv2.circle(displayFrame, stabilizedPupil, 3, (0, 255, 0), -1)
+                cv2.circle(displayFrame, anchorGlobal,    3, (0, 0, 255), -1)
+                
+                # Draw difference vector line connecting anchor and pupil
+                if showInstantGaze: cv2.line(displayFrame, anchorGlobal, pupilGlobal,     (255, 0, 255), 2)
+                cv2.line(displayFrame, anchorGlobal, stabilizedPupil, (0, 255, 255), 2)
+
+                displayFrame = cv2.flip(displayFrame, 1)
+                
+                # Display standardized gaze reading on screen
+                cv2.putText(displayFrame, f"Gaze Vector (dx, dy): ({stabilizedGaze[0]:.1f}, {stabilizedGaze[1]:.1f})", 
+                            (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
             
         self.stabilizedGaze = stabilizedGaze  # Store the latest stabilized gaze for external access
+        if self.stableRoi:
+            self.normalizedGaze = (stabilizedGaze[0] / (self.stableRoi[0] * 0.9), stabilizedGaze[1] / (self.stableRoi[1] * 0.9) if self.stableRoi else (0.0, 0.0))  # Normalize by ROI size if available
+            # Cap normalized gaze to (-1, 1) range
+            self.normalizedGaze = (
+                max(-1.0, min(1.0, self.normalizedGaze[0])),
+                max(-1.0, min(1.0, self.normalizedGaze[1]))
+            )
         return displayFrame, stabilizedGaze

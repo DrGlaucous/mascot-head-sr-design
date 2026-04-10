@@ -1,6 +1,5 @@
 from EyeTracker import *
 from time import perf_counter
-import pygame as pg
 
 def functionalityAndTiming():
     cap = cv2.VideoCapture(0)
@@ -51,8 +50,11 @@ def functionalityAndTiming():
             showGray = not showGray
         if key == ord('i'):
             showInstantGaze = not showInstantGaze
+    
+    cap.release()
 
 def checkGaze():
+    import pygame as pg
     import random
     import math
     pg.init()
@@ -175,15 +177,13 @@ def checkGaze():
         clock.tick(30)
 
     cap.release()
-    cv2.destroyAllWindows()
     pg.quit()
 
 if __name__ == "__main__":
-    # functionalityAndTiming()
-    checkGaze()
+    functionalityAndTiming()
+    # checkGaze()
 
 
         
     # Clean up
-    cap.release()
     cv2.destroyAllWindows()
