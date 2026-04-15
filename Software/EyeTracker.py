@@ -169,13 +169,18 @@ class EyeTracker:
         
         # Visualization prep
         displayFrame = frame.copy()
-        stabilizedGaze = None
 
+        stabilizedGaze = None 
+        # Above was commented out due to an error saying noneType is not subscriptable
+        # stabilizedGaze = [0.0, 0.0]
         # Draw ROI box if active
         if self.stableRoi:
             x, y, w, h = self.stableRoi
             if annotateFrame: cv2.rectangle(displayFrame, (x, y), (x+w, y+h), (255, 0, 255), 2)
 
+        # Potential error here
+        # Either pupilPos and anchorCropped are false
+        # This means that stabilizedGaze is left as none type
         if pupilPos and anchorCropped:
             # 3. Gaze Estimation (Using local cropped coordinates)
             rawGaze = self.estimateGaze(pupilPos, anchorCropped)

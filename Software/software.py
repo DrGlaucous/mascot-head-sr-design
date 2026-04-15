@@ -55,7 +55,8 @@ def display_eyes(average_eye_coords_left, average_eye_coords_right, new_data):
     return
 
 def alter_voice():
-    os.system("python Software\\audiodemo.py")
+    # os.system("python Software\\audiodemo.py")
+    return "no"
     # return
 # if __name__ == "__main__":
 """
@@ -78,7 +79,8 @@ def main():
                 gaze_pos[0] = 0
                 gaze_pos[1] = 0                    
                 return
-            annotatedFrame, gazeVector = tracker.processFrame(frame, showGray=False, showInstantGaze=False)
+            tracker.processFrame(frame, showGray=False, showInstantGaze=False)
+            gazeVector = tracker.normalizedGaze
             if(gazeVector is None):
                 gazeVector = [0,0]  
             # If gaze_pos[0] > rightHalfScreenThreshold, it should be positive
