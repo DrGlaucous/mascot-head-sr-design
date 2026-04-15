@@ -48,8 +48,8 @@ class EyeTracker:
             vertScaling = medH * self.eyeHFactor
             self.stableRoi = (medX, int(medY+vertScaling/2), medW, int(medH-vertScaling))
             return self.stableRoi
-            
-        return None
+        
+        return self.stableRoi  # Return the last stable ROI even if no new detection is found
 
     def preprocessFrame(self, frame: np.ndarray) -> Tuple[np.ndarray, Tuple[int, int], Tuple[int, int]]:
         """
