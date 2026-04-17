@@ -30,7 +30,7 @@ import pygame
 import pygame.freetype
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-CIRCLE_RADIUS  = 240
+CIRCLE_RADIUS  = 400
 EYE_IMAGE_PATH = "pete_eyes.png"   # path to the eye sprite; change as needed
 BG_COLOR       = (255, 255, 255)    # white
 STATUS_COLOR   = (160, 160, 160)    # gray
