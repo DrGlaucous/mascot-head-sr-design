@@ -30,12 +30,12 @@ import pygame
 import pygame.freetype
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-CIRCLE_RADIUS = 120
-BG_COLOR      = (255, 255, 255)   # white
-CIRCLE_COLOR  = (0,   0,   0)    # black
-STATUS_COLOR  = (160, 160, 160)  # gray
-WINDOW_TITLE  = "Gaze Position Display"
-TARGET_FPS    = 60
+CIRCLE_RADIUS  = 240
+EYE_IMAGE_PATH = "anime_eyes.png"   # path to the eye sprite; change as needed
+BG_COLOR       = (255, 255, 255)    # white
+STATUS_COLOR   = (160, 160, 160)    # gray
+WINDOW_TITLE   = "Gaze Position Display"
+TARGET_FPS     = 60
 
 
 class GazeDisplay:
@@ -70,6 +70,16 @@ class GazeDisplay:
         self.clock = pygame.time.Clock()
         self.frame_times: deque[float] = deque(maxlen=TARGET_FPS)
 
+        # Load and scale eye image to fit within a CIRCLE_RADIUS × CIRCLE_RADIUS square
+        raw = pygame.image.load(EYE_IMAGE_PATH).convert_alpha()
+        orig_w, orig_h = raw.get_size()
+        scale = min(CIRCLE_RADIUS / orig_w, CIRCLE_RADIUS / orig_h)
+        if scale < 1.0:
+            new_size = (max(1, int(orig_w * scale)), max(1, int(orig_h * scale)))
+            self._eye_img = pygame.transform.smoothscale(raw, new_size)
+        else:
+            self._eye_img = raw
+
     def run(self):
         """Blocking render loop. Press Escape or Q to quit."""
         running = True
@@ -99,7 +109,10 @@ class GazeDisplay:
 
             panel_rect = pygame.Rect(panel_x, 0, half_w, self.screen_h)
             self.screen.set_clip(panel_rect)
-            pygame.draw.circle(self.screen, CIRCLE_COLOR, (px, py), CIRCLE_RADIUS)
+            img_w, img_h = self._eye_img.get_size()
+            blit_x = px - img_w // 2
+            blit_y = py - img_h // 2
+            self.screen.blit(self._eye_img, (blit_x, blit_y))
             self.screen.set_clip(None)
 
             status_surf, status_rect = self.font.render(
