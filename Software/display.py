@@ -30,7 +30,7 @@ import pygame
 import pygame.freetype
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-CIRCLE_RADIUS = 80
+CIRCLE_RADIUS = 120
 BG_COLOR      = (255, 255, 255)   # white
 CIRCLE_COLOR  = (0,   0,   0)    # black
 STATUS_COLOR  = (160, 160, 160)  # gray
@@ -97,7 +97,10 @@ class GazeDisplay:
             px = panel_x + int((nx + 1) / 2 * half_w)
             py = int((-ny + 1) / 2 * self.screen_h)
 
+            panel_rect = pygame.Rect(panel_x, 0, half_w, self.screen_h)
+            self.screen.set_clip(panel_rect)
             pygame.draw.circle(self.screen, CIRCLE_COLOR, (px, py), CIRCLE_RADIUS)
+            self.screen.set_clip(None)
 
             status_surf, status_rect = self.font.render(
                 f"Gaze[{label}]: ({px - panel_x}, {py})", STATUS_COLOR
