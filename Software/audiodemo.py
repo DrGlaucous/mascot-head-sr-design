@@ -19,8 +19,8 @@ buffer = collections.deque()
 silence = b"\x00" * (BUFFER_LENGTH * 2)  # initialize with silence (16‑bit audi)
 buffer.append(silence)                                                          
                                                                                 
-LOW_FREQ = 60                                                                   
-HIGH_FREQ = 220                                                                 
+LOW_FREQ = 300 
+HIGH_FREQ = 3400
 if (len(sys.argv) == 3):                                                        
     LOW_FREQ = int(sys.argv[1])                                                 
     HIGH_FREQ = int(sys.argv[2])                                                
