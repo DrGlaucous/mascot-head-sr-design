@@ -17,8 +17,7 @@ class Filter:
         self.i += 1                                                             
         if self.i % 32 == 0:                                                    
             print(f"Filter #{self.i} begins at:{time.time()}")                  
-        npversion = np.frombuffer(input, dtype=np.int16).astype(np.float32)     
-        npversion = 2 * npversion                                               
+        npversion = np.frombuffer(input, dtype=np.int16).astype(np.float32)
                                                                                 
         if self.i % 32 == 0:                                                    
             print(f"Max input value: {np.max(npversion)}")                      
@@ -31,7 +30,7 @@ class Filter:
                                                                                 
         filtered = npversion                                                    
         filtered, self.zi = sosfilt(self.my_filter, npversion, zi=self.zi)      
-        filtered_clipped = np.clip(32 * filtered, -32768, 32767).astype(np.int16)                                                                               
+        filtered_clipped = np.clip(filtered, -32768, 32767).astype(np.int16)                                                                               
         result = filtered_clipped.tobytes()                                     
                                                                                 
         if self.i % 32 == 0:                                                    

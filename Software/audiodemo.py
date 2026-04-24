@@ -60,8 +60,5 @@ speaker_stream = pa.open(
                                                                                 
 mic_stream.start_stream()                                                       
 speaker_stream.start_stream()                                                   
-stopRunning = 0
-
-while mic_stream.is_active() and speaker_stream.is_active() and stopRunning < 50:                    
-    time.sleep(0.1) 
-    stopRunning += 1
+while mic_stream.is_active() and speaker_stream.is_active():
+    time.sleep(0.1)
