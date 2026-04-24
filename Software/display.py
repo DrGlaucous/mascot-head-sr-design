@@ -32,8 +32,8 @@ import pygame._freetype
 # ── Configuration ─────────────────────────────────────────────────────────────
 # Each mode: image path + max dimension in pixels (longest side) — adjust per mode visually.
 DISPLAY_MODES = [
-    {"image_path": "pete_eyes.png",  "eye_radius": 400},
-    {"image_path": "anime_eyes.png", "eye_radius": 400},
+    {"image_path": "pete_eyes.png",  "eye_radius": 300},
+    {"image_path": "anime_eyes.png", "eye_radius": 300},
 ]
 
 BG_COLOR     = (255, 255, 255)    # white
