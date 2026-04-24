@@ -41,6 +41,11 @@ STATUS_COLOR = (160, 160, 160)    # gray
 WINDOW_TITLE = "Gaze Position Display"
 TARGET_FPS   = 60
 
+# Per-eye center offsets in pixels (x, y).  Positive x → right, positive y → down.
+# Adjust these to align each eye image with the physical mask openings.
+LEFT_EYE_OFFSET  = (-30, 30)   # (x, y) offset for left  eye panel
+RIGHT_EYE_OFFSET = (30, 30)   # (x, y) offset for right eye panel
+
 
 class GazeDisplay:
     """
@@ -108,17 +113,19 @@ class GazeDisplay:
 
         half_w = self.screen_w // 2
 
+        eye_offsets = {"L": LEFT_EYE_OFFSET, "R": RIGHT_EYE_OFFSET}
         for label, arr_off, panel_x in (("L", 0, 0), ("R", 2, half_w)):
             nx = float(self._shared_array[arr_off])
             ny = float(self._shared_array[arr_off + 1])
-            px = panel_x + int((nx + 1) / 2 * half_w)
-            py = int((-ny + 1) / 2 * self.screen_h)
+            px = panel_x + int((-nx + 1) / 2 * half_w)
+            py = int((ny + 1) / 2 * self.screen_h)
 
+            off_x, off_y = eye_offsets[label]
             panel_rect = pygame.Rect(panel_x, 0, half_w, self.screen_h)
             self.screen.set_clip(panel_rect)
             img_w, img_h = self._mode_images[self._mode_index].get_size()
-            blit_x = px - img_w // 2
-            blit_y = py - img_h // 2
+            blit_x = px - img_w // 2 + off_x
+            blit_y = py - img_h // 2 + off_y
             self.screen.blit(self._mode_images[self._mode_index], (blit_x, blit_y))
             self.screen.set_clip(None)
 
