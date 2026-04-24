@@ -27,15 +27,19 @@ from collections import deque
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
 import pygame
-import pygame.freetype
+import pygame._freetype
 
 # ── Configuration ─────────────────────────────────────────────────────────────
-CIRCLE_RADIUS  = 400
-EYE_IMAGE_PATH = "pete_eyes.png"   # path to the eye sprite; change as needed
-BG_COLOR       = (255, 255, 255)    # white
-STATUS_COLOR   = (160, 160, 160)    # gray
-WINDOW_TITLE   = "Gaze Position Display"
-TARGET_FPS     = 60
+# Each mode: image path + max dimension in pixels (longest side) — adjust per mode visually.
+DISPLAY_MODES = [
+    {"image_path": "pete_eyes.png",  "eye_radius": 400},
+    {"image_path": "anime_eyes.png", "eye_radius": 400},
+]
+
+BG_COLOR     = (255, 255, 255)    # white
+STATUS_COLOR = (160, 160, 160)    # gray
+WINDOW_TITLE = "Gaze Position Display"
+TARGET_FPS   = 60
 
 
 class GazeDisplay:
@@ -53,7 +57,7 @@ class GazeDisplay:
         self._shared_array = shared_array
 
         pygame.init()
-        pygame.freetype.init()
+        pygame._freetype.init()
         pygame.mouse.set_visible(False)
 
         info = pygame.display.Info()
@@ -66,19 +70,20 @@ class GazeDisplay:
         )
         pygame.display.set_caption(f"{WINDOW_TITLE} [L | R]")
 
-        self.font = pygame.freetype.SysFont("monospace", 18)
+        self.font = pygame._freetype.Font(None, 18)
         self.clock = pygame.time.Clock()
         self.frame_times: deque[float] = deque(maxlen=TARGET_FPS)
 
-        # Load and scale eye image to fit within a CIRCLE_RADIUS × CIRCLE_RADIUS square
-        raw = pygame.image.load(EYE_IMAGE_PATH).convert_alpha()
-        orig_w, orig_h = raw.get_size()
-        scale = min(CIRCLE_RADIUS / orig_w, CIRCLE_RADIUS / orig_h)
-        if scale < 1.0:
+        # Load and scale each mode's eye image to fit within its eye_radius square
+        self._mode_images = []
+        for mode in DISPLAY_MODES:
+            raw = pygame.image.load(mode["image_path"]).convert_alpha()
+            r = mode["eye_radius"]
+            orig_w, orig_h = raw.get_size()
+            scale = min(r / orig_w, r / orig_h)
             new_size = (max(1, int(orig_w * scale)), max(1, int(orig_h * scale)))
-            self._eye_img = pygame.transform.smoothscale(raw, new_size)
-        else:
-            self._eye_img = raw
+            self._mode_images.append(pygame.transform.smoothscale(raw, new_size))
+        self._mode_index = 0
 
     def run(self):
         """Blocking render loop. Press Escape or Q to quit."""
@@ -90,6 +95,8 @@ class GazeDisplay:
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
                         running = False
+                elif event.type in (pygame.MOUSEBUTTONDOWN, pygame.FINGERDOWN):
+                    self._mode_index = (self._mode_index + 1) % len(DISPLAY_MODES)
 
             self._render()
             self.clock.tick(TARGET_FPS)
@@ -109,14 +116,14 @@ class GazeDisplay:
 
             panel_rect = pygame.Rect(panel_x, 0, half_w, self.screen_h)
             self.screen.set_clip(panel_rect)
-            img_w, img_h = self._eye_img.get_size()
+            img_w, img_h = self._mode_images[self._mode_index].get_size()
             blit_x = px - img_w // 2
             blit_y = py - img_h // 2
-            self.screen.blit(self._eye_img, (blit_x, blit_y))
+            self.screen.blit(self._mode_images[self._mode_index], (blit_x, blit_y))
             self.screen.set_clip(None)
 
             status_surf, status_rect = self.font.render(
-                f"Gaze[{label}]: ({px - panel_x}, {py})", STATUS_COLOR
+                f"Gaze[{label}]: ({px - panel_x}, {py})", fgcolor=STATUS_COLOR
             )
             self.screen.blit(
                 status_surf,
@@ -137,7 +144,7 @@ class GazeDisplay:
             elapsed = self.frame_times[-1] - self.frame_times[0]
             if elapsed > 0:
                 fps_text = f"{(len(self.frame_times) - 1) / elapsed:.1f}"
-        fps_surf, fps_rect = self.font.render(f"FPS: {fps_text}", STATUS_COLOR)
+        fps_surf, fps_rect = self.font.render(f"FPS: {fps_text}", fgcolor=STATUS_COLOR)
         self.screen.blit(fps_surf, (self.screen_w - fps_rect.width - 10, 10))
 
         pygame.display.flip()
