@@ -34,6 +34,7 @@ import pygame._freetype
 DISPLAY_MODES = [
     {"image_path": "pete_eyes.png",  "eye_radius": 300},
     {"image_path": "anime_eyes.png", "eye_radius": 300},
+    {"image_path": "creepy_overlay.png", "overlay": True, "gaze_circle_radius": 30},
 ]
 
 BG_COLOR     = (255, 255, 255)    # white
@@ -79,13 +80,19 @@ class GazeDisplay:
         self.clock = pygame.time.Clock()
         self.frame_times: deque[float] = deque(maxlen=TARGET_FPS)
 
-        # Load and scale each mode's eye image to fit within its eye_radius square
+        # Load and scale each mode's eye image.
+        # Normal modes: scale to fit within eye_radius square.
+        # Overlay modes: scale to fill the panel (half_w × screen_h).
         self._mode_images = []
+        half_w = self.screen_w // 2
         for mode in DISPLAY_MODES:
             raw = pygame.image.load(mode["image_path"]).convert_alpha()
-            r = mode["eye_radius"]
             orig_w, orig_h = raw.get_size()
-            scale = min(r / orig_w, r / orig_h)
+            if mode.get("overlay"):
+                scale = max(half_w / orig_w, self.screen_h / orig_h)
+            else:
+                r = mode["eye_radius"]
+                scale = min(r / orig_w, r / orig_h)
             new_size = (max(1, int(orig_w * scale)), max(1, int(orig_h * scale)))
             self._mode_images.append(pygame.transform.smoothscale(raw, new_size))
         self._mode_index = 0
@@ -123,10 +130,21 @@ class GazeDisplay:
             off_x, off_y = eye_offsets[label]
             panel_rect = pygame.Rect(panel_x, 0, half_w, self.screen_h)
             self.screen.set_clip(panel_rect)
-            img_w, img_h = self._mode_images[self._mode_index].get_size()
-            blit_x = px - img_w // 2 + off_x
-            blit_y = py - img_h // 2 + off_y
-            self.screen.blit(self._mode_images[self._mode_index], (blit_x, blit_y))
+            img = self._mode_images[self._mode_index]
+            img_w, img_h = img.get_size()
+            mode = DISPLAY_MODES[self._mode_index]
+            if mode.get("overlay"):
+                # Draw gaze circle first (underneath the overlay)
+                circle_r = mode.get("gaze_circle_radius", 30)
+                pygame.draw.circle(self.screen, (0, 0, 0), (px + off_x, py + off_y), circle_r)
+                # Blit overlay centered in the panel
+                blit_x = panel_x + (half_w - img_w) // 2
+                blit_y = (self.screen_h - img_h) // 2
+                self.screen.blit(img, (blit_x, blit_y))
+            else:
+                blit_x = px - img_w // 2 + off_x
+                blit_y = py - img_h // 2 + off_y
+                self.screen.blit(img, (blit_x, blit_y))
             self.screen.set_clip(None)
 
             status_surf, status_rect = self.font.render(
