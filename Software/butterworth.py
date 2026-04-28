@@ -3,7 +3,7 @@ import numpy as np
 from scipy.signal import butter, sosfilt, sosfilt_zi                            
                                                                                 
 class Filter:                                                                   
-    def __init__(self, sample_rate=44100, low_cut=300, high_cut=3400, order=6): 
+    def __init__(self, sample_rate=44100, low_cut=300, high_cut=3400, gain=1, order=6): 
         # Normalize cutoff frequencies                                          
         nyquist = 0.5 * sample_rate                                             
         low = low_cut / nyquist                                                 
@@ -11,13 +11,15 @@ class Filter:
         self.my_filter = butter(order, [low, high], btype='band', output='sos') 
         self.zi = sosfilt_zi(self.my_filter)                                    
         self.has_filtered = False                                               
-        self.i = 0                                                              
+        self.i = 0    
+        self.gain = gain                                                          
                                                                                 
     def filter(self, input: bytes):                                             
         self.i += 1                                                             
         if self.i % 32 == 0:                                                    
             print(f"Filter #{self.i} begins at:{time.time()}")                  
         npversion = np.frombuffer(input, dtype=np.int16).astype(np.float32)
+        npversion = self.gain * npversion
                                                                                 
         if self.i % 32 == 0:                                                    
             print(f"Max input value: {np.max(npversion)}")                      
