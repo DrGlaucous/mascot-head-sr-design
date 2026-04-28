@@ -5,7 +5,11 @@ import pyaudio
 
 CHUNK = 1024
 
-with wave.open('solfeggietto.wav', 'rb') as wf:
+file_name = "solfegietto.wav"
+if (len(sys.argv) > 1):
+    file_name = sys.argv[1]
+
+with wave.open(file_name, 'rb') as wf:
     # Instantiate PyAudio and initialize PortAudio system resources (1)
     p = pyaudio.PyAudio()
 
