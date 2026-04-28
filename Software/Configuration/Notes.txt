@@ -38,9 +38,49 @@ https://forums.raspberrypi.com/viewtopic.php?t=239367
 https://www.raspberrypi.com/documentation/computers/compute-module.html
 
 
+-----------------------------------------------------
+
+I had to modify audiodemo.py and software.py to work with shutdown procedures.
+
+also, I added a proper software service file to have the pi start the program on power up.
 
 
+## 3: The startup service
 
+we use `systemctl` to run the server executable when the board starts.
+We do this with a new systemd service file inside: `/etc/systemd/system/software.service`:
+
+```ini
+[Unit]
+Description=Pete got them moving eyes
+After=multi-user.target
+
+[Service]
+Type=simple
+User=srgroup
+WorkingDirectory = /home/srgroup/mascot-head-sr-design/Software/
+ExecStart=/usr/bin/python /home/srgroup/mascot-head-sr-design/Software/software_ed_modify.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+```
+
+once we add this, we can start it with:
+```sh
+sudo systemctl daemon-reload
+sudo systemctl enable software.service
+sudo systemctl start software.service
+```
+
+and stop it with:
+```sh
+sudo systemctl disable software.service
+sudo systemctl stop software.service
+```
 
 
 

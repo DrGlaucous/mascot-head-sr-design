@@ -1,0 +1,15 @@
+[Unit]
+Description=Pete got them moving eyes
+After=multi-user.target
+
+[Service]
+Type=simple
+User=srgroup
+WorkingDirectory = /home/srgroup/mascot-head-sr-design/Software/
+ExecStart=/usr/bin/python /home/srgroup/mascot-head-sr-design/Software/software_ed_modify.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
