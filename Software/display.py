@@ -24,6 +24,8 @@ import math
 import threading
 from collections import deque
 
+from audiodemo_ed_modify import AudioManager
+
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
 import pygame
@@ -34,7 +36,7 @@ import pygame._freetype
 DISPLAY_MODES = [
     {"image_path": "pete_eyes.png",  "eye_radius": 300},
     {"image_path": "anime_eyes.png", "eye_radius": 300},
-    {"image_path": "creepy_overlay.png", "overlay": True, "gaze_circle_radius": 30},
+    {"image_path": "creepy_overlay.png", "overlay": True, "gaze_circle_radius": 20, "overlay_zoom": 0.9},
 ]
 
 BG_COLOR     = (255, 255, 255)    # white
@@ -82,38 +84,63 @@ class GazeDisplay:
 
         # Load and scale each mode's eye image.
         # Normal modes: scale to fit within eye_radius square.
-        # Overlay modes: scale to fill the panel (half_w × screen_h).
+        # Overlay modes: scale to fill the panel (half_w × screen_h), then apply overlay_zoom.
+        self._raw_images = []
         self._mode_images = []
         half_w = self.screen_w // 2
         for mode in DISPLAY_MODES:
             raw = pygame.image.load(mode["image_path"]).convert_alpha()
-            orig_w, orig_h = raw.get_size()
-            if mode.get("overlay"):
-                scale = max(half_w / orig_w, self.screen_h / orig_h)
-            else:
-                r = mode["eye_radius"]
-                scale = min(r / orig_w, r / orig_h)
-            new_size = (max(1, int(orig_w * scale)), max(1, int(orig_h * scale)))
-            self._mode_images.append(pygame.transform.smoothscale(raw, new_size))
+            self._raw_images.append(raw)
+            self._mode_images.append(self._scale_image(raw, mode, half_w))
         self._mode_index = 0
+
+        # Putting audio management here
+        self._audioManager = AudioManager()
+
+    def _scale_image(self, raw, mode, half_w):
+        orig_w, orig_h = raw.get_size()
+        if mode.get("overlay"):
+            base_scale = max(half_w / orig_w, self.screen_h / orig_h)
+            scale = base_scale * mode.get("overlay_zoom", 1.0)
+        else:
+            r = mode["eye_radius"]
+            scale = min(r / orig_w, r / orig_h)
+        new_size = (max(1, int(orig_w * scale)), max(1, int(orig_h * scale)))
+        return pygame.transform.smoothscale(raw, new_size)
 
     def run(self):
         """Blocking render loop. Press Escape or Q to quit."""
         running = True
+        self._audioManager.start()
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+
                 elif event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_ESCAPE, pygame.K_q):
                         running = False
+                    elif event.key in (pygame.K_PLUS, pygame.K_EQUALS, pygame.K_KP_PLUS):
+                        self._adjust_overlay_zoom(0.05)
+                    elif event.key in (pygame.K_MINUS, pygame.K_KP_MINUS):
+                        self._adjust_overlay_zoom(-0.05)
+                        
                 elif event.type in (pygame.MOUSEBUTTONDOWN, pygame.FINGERDOWN):
                     self._mode_index = (self._mode_index + 1) % len(DISPLAY_MODES)
+                    if self._audioManager is not None:
+                        self._audioManager.changeFilter()
 
             self._render()
             self.clock.tick(TARGET_FPS)
 
         pygame.quit()
+
+    def _adjust_overlay_zoom(self, delta):
+        half_w = self.screen_w // 2
+        for i, mode in enumerate(DISPLAY_MODES):
+            if mode.get("overlay"):
+                mode["overlay_zoom"] = max(0.1, round(mode.get("overlay_zoom", 1.0) + delta, 3))
+                self._mode_images[i] = self._scale_image(self._raw_images[i], mode, half_w)
 
     def _render(self):
         self.screen.fill(BG_COLOR)

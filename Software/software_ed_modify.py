@@ -2,6 +2,8 @@
 #I'm trying to troubleshoot why the eye tracking sometimes doesn't work.
 #and also clean out the redundant camera code + make it properly stop on a keyboard or other program interrupt
 
+# Later modified by Robert Rattray to use refactored AudioManager object as
+# member of display object instead of extra thread
 
 import tracemalloc # Memory tracking
 import cProfile # Profiler
@@ -20,9 +22,6 @@ gaze_pos = [0,0,0,0]
 
 #wrapped in a container so we can pass by-ref
 should_breakout = [False]
-
-def alter_voice():
-    audiodemo(should_breakout)
 
 
 def wrap_eye_tracking():
@@ -48,13 +47,10 @@ def wrap_eye_tracking():
         print(f"{idx:2d} | GazePos: {gaze_pos[0]:.3f}, {gaze_pos[1]:.3f} {gaze_pos[2]:.3f}, {gaze_pos[3]:.3f}")
         idx = (idx+1) % 60
 
-t3 = threading.Thread(target= alter_voice, args=(), daemon=False)
 t2 = threading.Thread(target=wrap_eye_tracking, daemon=False)
 
 def main():
     tracemalloc.start()
-    #skip audio for now
-    t3.start()
     t2.start()
 
     # Note, we are using the convention [x, y]
@@ -90,8 +86,7 @@ if __name__ == "__main__":
     pygame.quit()
     print("-------------------------main stopped--------------")
     
-    #tell the sub-threads to stop their infinite loops
+    #tell the sub-thread to stop its infinite loop
     should_breakout[0] = True
     t2.join()
-    t3.join()
     sys.exit()
