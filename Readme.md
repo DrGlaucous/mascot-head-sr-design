@@ -24,7 +24,12 @@ Things we've checked out from lab:
 - x1 Rpi3 (luis)
 
 
+How to play mp3 files through the CLI:
+mpg123 gives the help menu
+the -f flag controls loudness (x out of 32768)
 
+Example:
+mpg123 -f 8000 JumpingJackson.mp3
 
 
 
