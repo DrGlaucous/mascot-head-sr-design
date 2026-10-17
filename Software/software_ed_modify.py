@@ -11,17 +11,36 @@ import threading # multi-threading
 import time # Sleeping and time control
 import os
 import multiprocessing as mp
+import sys
+from libcamera import Transform
+from picamera2 import Picamera2
 from multiprocessing import *
 from multiprocessing.pool import *
 from EyeTracker import *
 from display import *
 from butterworth import *
-from audiodemo_ed_modify import *
+
+#removing audio for now
+#from audiodemo_ed_modify import *
 
 gaze_pos = [0,0,0,0]
 
 #wrapped in a container so we can pass by-ref
 should_breakout = [False]
+
+
+def init_and_start_camera(camera_id):
+    camera = Picamera2(camera_id)
+    #640,480
+    #(1280, 720)
+
+    config = camera.create_preview_configuration(main={"size":(640,480), "format": "RGB888"}, transform=Transform(hflip=0, vflip=1))
+    camera.configure(config)
+    camera.start()
+    return camera
+
+
+
 
 
 def wrap_eye_tracking():

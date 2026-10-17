@@ -24,7 +24,7 @@ import math
 import threading
 from collections import deque
 
-from audiodemo_ed_modify import AudioManager
+#from audiodemo_ed_modify import AudioManager
 
 os.environ.setdefault("SDL_AUDIODRIVER", "dummy")
 
@@ -95,7 +95,7 @@ class GazeDisplay:
         self._mode_index = 0
 
         # Putting audio management here
-        self._audioManager = AudioManager()
+        #self._audioManager = AudioManager()
 
     def _scale_image(self, raw, mode, half_w):
         orig_w, orig_h = raw.get_size()
@@ -111,7 +111,7 @@ class GazeDisplay:
     def run(self):
         """Blocking render loop. Press Escape or Q to quit."""
         running = True
-        self._audioManager.start()
+        #self._audioManager.start()
         while running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -127,8 +127,9 @@ class GazeDisplay:
                         
                 elif event.type in (pygame.MOUSEBUTTONDOWN, pygame.FINGERDOWN):
                     self._mode_index = (self._mode_index + 1) % len(DISPLAY_MODES)
-                    if self._audioManager is not None:
-                        self._audioManager.changeFilter()
+                    print(self._mode_index)
+                    #if self._audioManager is not None:
+                    #    self._audioManager.changeFilter()
 
             self._render()
             self.clock.tick(TARGET_FPS)

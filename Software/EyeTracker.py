@@ -15,7 +15,9 @@ class EyeTracker:
         """
         # Load OpenCV's pre-trained Haar cascade for eye detection
         #! cv2.data might not be recognized by your IDE, but it should work when you run the script
-        eye_cascade_path = cv2.data.haarcascades + 'haarcascade_eye.xml'
+        
+        #eye_cascade_path = cv2.data.haarcascades + 'haarcascade_eye.xml'
+        eye_cascade_path = "./haarcascade_eye.xml"
         self.eyeCascade = cv2.CascadeClassifier(eye_cascade_path)
         
         # Buffer for storing recent bounding boxes to calculate the median
@@ -214,8 +216,15 @@ class EyeTracker:
                             (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
             
         self.stabilizedGaze = stabilizedGaze  # Store the latest stabilized gaze for external access
+        
         if self.stableRoi:
-            self.normalizedGaze = (stabilizedGaze[0] / (self.stableRoi[0] * 0.9), stabilizedGaze[1] / (self.stableRoi[1] * 0.9) if self.stableRoi else (0.0, 0.0))  # Normalize by ROI size if available
+
+            # Normalize by ROI size if available
+            if(self.stableRoi and stabilizedGaze):
+                self.normalizedGaze = stabilizedGaze[0] / (self.stableRoi[0] * 0.9), stabilizedGaze[1] / (self.stableRoi[1] * 0.9)
+            else:
+                self.normalizedGaze = (0.0, 0.0)
+
             # Cap normalized gaze to (-1, 1) range
             self.normalizedGaze = (
                 max(-1.0, min(1.0, self.normalizedGaze[0])),

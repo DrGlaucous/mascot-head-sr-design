@@ -32,10 +32,31 @@ Example:
 mpg123 -f 8000 JumpingJackson.mp3
 
 
+## Setup (from a stock system)
+
+To use the built-in display+camera, copy the config files in the software folder into the boot partition (renaming them)
+
+Software dependencies:
+python3-opencv
+python3-pyaudio
+python3-pygame
+python3-scipy
+python3-picamera2
 
 
+put the software.service file in:
+`/etc/systemd/system/`
 
+```
+commands to start it:
 
+sudo systemctl daemon-reload
+sudo systemctl enable software.service
+sudo systemctl start software.service
 
+commands to control or restart it
+sudo systemctl stop software.service
+sudo systemctl restart software.service
 
-
+systemctl status software.service
+```
